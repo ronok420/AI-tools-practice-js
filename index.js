@@ -294,20 +294,22 @@ const displayModalDetails = modal =>{
     const modalbody=document.getElementById('mmodal-div');
     modalbody.innerHTML=`
 
-    <div class="modal-div card border border-danger mx-2" style="width: 18rem;">
+    <div class="modal-div card border border-danger mx-2" style="width: 25rem;">
                             <div class="card-body">
-                              <h5 class="card-title"></h5>
-                              <p class="card-text">${modal.data.description}</p>
+                              <h5 class="card-title">${modal.data.description}</h5>
+                              <p class="card-text"></p>
                               
                             
                             </div>
                           </div>
                         
                           
-                          <div class="modal-div card border border-secondary mx-2" style="width: 18rem;">
+                          <div class="modal-div card border border-secondary mx-2" style="width: 25rem;">
                             <div class="card-body">
-                              <h5 class="card-title"></h5>
-                              <img src="${imageLink}" class="card-img-top" alt="Image Alt Text">
+                             <img src="${imageLink}" class="card-img-top" alt="Image Alt Text">
+                              <h5 class="card-title">${modal.data.input_output_examples[0].input}</h5>
+                              <p class="card-text">${modal.data.input_output_examples[0].output}</p>
+                             
                               
                             </div>
                           </div>
