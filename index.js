@@ -278,9 +278,11 @@ const displayModalDetails = modal =>{
     let toolId= `${modal.data.id}`;
 
     let imageLink = modal.data.image_link[0];
-   if ( toolId=== '6') {
-       imageLink = 'https://www.demandsage.com/wp-content/uploads/2022/12/Jasper-Chat-Review-DemandSage-1024x576.png';
-   } else if (toolId ==='11') {
+   if ( toolId === '06') 
+   {
+    imageLink = 'https://www.demandsage.com/wp-content/uploads/2022/12/Jasper-Chat-Review-DemandSage-1024x576.png';
+} 
+   else if (toolId ==='11') {
        imageLink = 'https://images.livemint.com/img/2023/02/11/600x338/REPLIKA_1676093279258_1676093288320_1676093288320.jpg';
    } else {
        imageLink = modal.data.image_link[0];
