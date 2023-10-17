@@ -180,14 +180,26 @@ function sortToolsByDate() {
     tools.forEach((tool, index) => {
         // ... (same code as before for rendering tools)
 
-         let imageLink = tool.image;
-        if (index === 5) {
-            imageLink = 'https://www.demandsage.com/wp-content/uploads/2022/12/Jasper-Chat-Review-DemandSage-1024x576.png';
-        } else if (index === 10) {
-            imageLink = 'https://images.livemint.com/img/2023/02/11/600x338/REPLIKA_1676093279258_1676093288320_1676093288320.jpg';
-        } else {
-            imageLink = tool.image;
-        }
+
+        let toolName= `${tool.name}`;
+
+        let imageLink = tool.image;
+       if ( toolName=== 'Jasper Chat') {
+           imageLink = 'https://www.demandsage.com/wp-content/uploads/2022/12/Jasper-Chat-Review-DemandSage-1024x576.png';
+       } else if (toolName ==='Replika') {
+           imageLink = 'https://images.livemint.com/img/2023/02/11/600x338/REPLIKA_1676093279258_1676093288320_1676093288320.jpg';
+       } else {
+           imageLink = tool.image;
+       }
+
+        //  let imageLink = tool.image;
+        // if (index === 5) {
+        //     imageLink = 'https://www.demandsage.com/wp-content/uploads/2022/12/Jasper-Chat-Review-DemandSage-1024x576.png';
+        // } else if (index === 10) {
+        //     imageLink = 'https://images.livemint.com/img/2023/02/11/600x338/REPLIKA_1676093279258_1676093288320_1676093288320.jpg';
+        // } else {
+        //     imageLink = tool.image;
+        // }
 
         const aidiv = document.createElement('div');
         aidiv.classList.add('col');
