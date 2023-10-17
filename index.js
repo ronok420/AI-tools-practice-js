@@ -1,3 +1,6 @@
+
+
+
 const  aiuniversedata= async (data2) =>{
     const url = 'https://openapi.programming-hero.com/api/ai/tools';
     const res = await fetch(url);
@@ -7,6 +10,8 @@ const  aiuniversedata= async (data2) =>{
     displayAiTools(data);
 
 }
+
+
 
 const displayAiTools = (data,) => {
     console.log(data);
@@ -83,9 +88,21 @@ else{
                 <h5 class="card-title">${tool.name} </h5>
                 <ul class="card-text   d-flex justify-content-between align-items-center">
                 &#128197;  ${tool.published_in}  
-               
-                <i class="bi bi-arrow-right text-danger fw-bold fs-4 rounded-circle d-flex justify-content-center align-items-center p-2"  style="background-color: #D4EFDF;"></i>
+
                 
+
+               
+                <button type="button" onclick="loadPhoneModal('${tool.id}')" class="btn " data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                               <i class="bi bi-arrow-right text-danger fw-bold fs-4 rounded-circle d-flex justify-content-center align-items-center p-2"  style="background-color: #D4EFDF;  "></i>
+
+               </button>
+
+             
+               
+                
+
+
+
                 </ul>
                
                 
@@ -143,7 +160,13 @@ document.getElementById('show-all-button').addEventListener('click', function ()
                     <h5 class="card-title">${tool.name}</h5>
                     <ul class="card-text d-flex justify-content-between align-items-center">
                         &#128197; ${tool.published_in}
-                        <i class="bi bi-arrow-right text-danger fw-bold fs-4 rounded-circle d-flex justify-content-center align-items-center p-2"  style="background-color: #D4EFDF;"></i>
+
+                        <button type="button" onclick="loadPhoneModal('${tool.id}')" class="btn " data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                       
+                        <i class="bi bi-arrow-right text-danger fw-bold fs-4 rounded-circle d-flex justify-content-center align-items-center p-2"  style="background-color: #D4EFDF;  "></i>
+
+                         </button>
+
                     </ul>
                 </div>
             </div>
@@ -192,15 +215,7 @@ function sortToolsByDate() {
            imageLink = tool.image;
        }
 
-        //  let imageLink = tool.image;
-        // if (index === 5) {
-        //     imageLink = 'https://www.demandsage.com/wp-content/uploads/2022/12/Jasper-Chat-Review-DemandSage-1024x576.png';
-        // } else if (index === 10) {
-        //     imageLink = 'https://images.livemint.com/img/2023/02/11/600x338/REPLIKA_1676093279258_1676093288320_1676093288320.jpg';
-        // } else {
-        //     imageLink = tool.image;
-        // }
-
+        
         const aidiv = document.createElement('div');
         aidiv.classList.add('col');
         const featuresListItems = tool.features.map((feature, featureIndex) => `<li>${featureIndex + 1}. ${feature}</li>`).join('');
@@ -219,7 +234,14 @@ function sortToolsByDate() {
                     <h5 class="card-title">${tool.name}</h5>
                     <ul class="card-text d-flex justify-content-between align-items-center">
                         &#128197; ${tool.published_in}
-                        <i class="bi bi-arrow-right text-danger fw-bold fs-4 rounded-circle d-flex justify-content-center align-items-center p-2"  style="background-color: #D4EFDF;"></i>
+                       
+                       
+                        <button type="button" onclick="loadPhoneModal('${tool.id}')" class="btn " data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                                 <i class="bi bi-arrow-right text-danger fw-bold fs-4 rounded-circle d-flex justify-content-center align-items-center p-2"  style="background-color: #D4EFDF;  "></i>
+
+                          </button>
+
+
                     </ul>
                 </div>
             </div>
@@ -236,9 +258,60 @@ function sortToolsByDate() {
 
 
 
+
+
 }
 
+const loadPhoneModal = async id =>{
+    const url =`https://openapi.programming-hero.com/api/ai/tool/${id}`;
+    const res =await fetch(url);
+    const data = await res.json();
+    displayModalDetails(data);
+    
 
+
+
+}
+const displayModalDetails = modal =>{
+
+
+    let toolId= `${modal.data.id}`;
+
+    let imageLink = modal.data.image_link[0];
+   if ( toolId=== '6') {
+       imageLink = 'https://www.demandsage.com/wp-content/uploads/2022/12/Jasper-Chat-Review-DemandSage-1024x576.png';
+   } else if (toolId ==='11') {
+       imageLink = 'https://images.livemint.com/img/2023/02/11/600x338/REPLIKA_1676093279258_1676093288320_1676093288320.jpg';
+   } else {
+       imageLink = modal.data.image_link[0];
+   }
+
+
+
+    console.log(modal);
+    const modalbody=document.getElementById('mmodal-div');
+    modalbody.innerHTML=`
+
+    <div class="modal-div card border border-danger mx-2" style="width: 18rem;">
+                            <div class="card-body">
+                              <h5 class="card-title"></h5>
+                              <p class="card-text">${modal.data.description}</p>
+                              
+                            
+                            </div>
+                          </div>
+                        
+                          
+                          <div class="modal-div card border border-secondary mx-2" style="width: 18rem;">
+                            <div class="card-body">
+                              <h5 class="card-title"></h5>
+                              <img src="${imageLink}" class="card-img-top" alt="Image Alt Text">
+                              
+                            </div>
+                          </div>
+    
+    `;
+}
 
 
 
