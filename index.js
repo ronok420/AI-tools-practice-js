@@ -315,6 +315,12 @@ const displayModalDetails = modal =>{
     const modalbody=document.getElementById('mmodal-div');
     //  const features = modal.data.features.map(feature2 => `<li>${feature2}</li>`).join('');
      const integrations = modal.data.integrations.map(element => `<li>${element}</li>`).join('');
+    //  const pricingHtml = modal.data.pricing.map(element => `<p>Plan: ${element.plan}, Price: ${element.price}</p>`).join('');
+
+
+    const firstPlan = modal.data.pricing[0];
+const secondPlan = modal.data.pricing[1];
+const thirdPlan = modal.data.pricing[2];
    
     modalbody.innerHTML=`
 
@@ -322,34 +328,57 @@ const displayModalDetails = modal =>{
 
     <h5 class="card-title">${modal.data.description}</h5>
 
+
+    <div class="parent-div d-flex justify-content-center" style="background-color: #; padding: 7%; ">
+                <div class="child-div" style="background-color: #ABEBC6; color: #2C3E50; margin: 2%; padding: 2%;  border-radius: 15%; ">
+                    <!-- Content for the first div -->
+                    <p><strong>${firstPlan.price}</strong></p>
+                    <p><strong>${firstPlan.plan}</strong></p>
+
+                       </div>
+
+                <div class="child-div" style="background-color: #FEF5E7; color: #76D7C4; margin: 2%; padding: 2%; border-radius:15%;">
+                    <!-- Content for the second div -->
+                    <p><strong>${secondPlan.price}</strong></p>
+                    <p><strong>${secondPlan.plan}</strong></p>
+
+
+                </div>
+
+                <div class="child-div" style="background-color: #F5B7B1; color: white; margin: 2%; padding: 2%; border-radius:15%;">
+                    <!-- Content for the third div -->
+                    <p><strong>${thirdPlan.price}</strong></p>
+                    <p><strong>${thirdPlan.plan}</strong></p>                   
+                    
+                    </div>
+</div>
+
+
+
+
+
+
                             
                     <div class="card-body d-flex">
                             
                             
-                        <div>
-                              <p class="card-text"></p>
-                              
-                               
-                               <h5 class="card-title">features:</h5>
-                                <ul>${featuresList}</ul>
-                            
-                            </div>
+                                    <div>
+                                        <p class="card-text"></p>
+                                        <h5 class="card-title">features:</h5>
+                                        <ul>${featuresList}</ul>
+                                    
+                                    </div>
 
 
 
 
-                            <div class="mt-3"> 
-                            <h5 class="card-title">integrations:</h5>
-                             <ol>${integrations}</ol>
-                            </div>
+                                    <div class="mt-3"> 
+                                        <h5 class="card-title">integrations:</h5>
+                                        <ol>${integrations}</ol>
+                                    </div>
 
 
-                            
-                           
-
-                               
-                            
-                            </div>
+                       </div>
                             
     </div>
                         
