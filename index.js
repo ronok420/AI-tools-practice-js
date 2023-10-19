@@ -288,31 +288,86 @@ const displayModalDetails = modal =>{
        imageLink = modal.data.image_link[0];
    }
 
+   
 
+
+
+
+   let featuresList = '';
+
+   // Check if modal.data.features is an object
+   if (typeof modal.data.features === 'object' && modal.data.features !== null) {
+       // Iterate over the object using for...in loop
+       for (let key in modal.data.features) {
+           // Check if the property is an object and has a 'feature_name' property
+           if (typeof modal.data.features[key] === 'object' && modal.data.features[key].hasOwnProperty('feature_name')) {
+               // Assuming 'feature_name' is a property of the nested objects
+               featuresList += `<li>${modal.data.features[key].feature_name}</li>`;
+           }
+       }
+   } else {
+       // Handle the case when features is not an object
+       featuresList = '<li>No features available</li>';
+   }
 
     console.log(modal);
+
     const modalbody=document.getElementById('mmodal-div');
+    //  const features = modal.data.features.map(feature2 => `<li>${feature2}</li>`).join('');
+     const integrations = modal.data.integrations.map(element => `<li>${element}</li>`).join('');
+   
     modalbody.innerHTML=`
 
-    <div class="modal-div card border border-danger mx-2" style="width: 25rem;">
-                            <div class="card-body">
-                              <h5 class="card-title">${modal.data.description}</h5>
+    <div class="modal-div card border border-danger mx-2 " style="width: 25rem;">
+
+    <h5 class="card-title">${modal.data.description}</h5>
+
+                            
+                    <div class="card-body d-flex">
+                            
+                            
+                        <div>
                               <p class="card-text"></p>
                               
+                               
+                               <h5 class="card-title">features:</h5>
+                                <ul>${featuresList}</ul>
                             
                             </div>
-                          </div>
+
+
+
+
+                            <div class="mt-3"> 
+                            <h5 class="card-title">integrations:</h5>
+                             <ol>${integrations}</ol>
+                            </div>
+
+
+                            
+                           
+
+                               
+                            
+                            </div>
+                            
+    </div>
                         
                           
-                          <div class="modal-div card border border-secondary mx-2" style="width: 25rem;">
+     <div class="modal-div card border border-secondary mx-2" style="width: 25rem;">
                             <div class="card-body">
-                             <img src="${imageLink}" class="card-img-top" alt="Image Alt Text">
-                              <h5 class="card-title">${modal.data.input_output_examples[0].input}</h5>
-                              <p class="card-text">${modal.data.input_output_examples[0].output}</p>
+                                 <img src="${imageLink}" class="card-img-top" alt="Image Alt Text">
+                                 <h5 class="card-title">${modal.data.input_output_examples[0].input}</h5>
+                                 <p class="card-text">${modal.data.input_output_examples[0].output}</p>
                              
                               
                             </div>
-                          </div>
+                            
+     </div>
+
+                         
+                         
+                          
     
     `;
 }
